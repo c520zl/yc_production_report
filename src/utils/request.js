@@ -32,13 +32,18 @@ service.interceptors.response.use(
   (error) => {
     // 处理HTTP错误状态码
     if (error.response && [401, 403].includes(error.response.status)) {
-      const userStore = useUserStore();
-      userStore.logout();
-      window.location.href = '/login';
-      ElMessage.error(error.response.data.message || '登录状态已过期，请重新登录');
-    } else {
-      ElMessage.error(error.message || '网络异常，请稍后重试');
-    }
+  // 对用户信息接口的401错误特殊处理，避免自动登出
+  if (error.config.url.includes('/admin/info')) {
+    ElMessage.error('获取用户信息失败，请重新登录');
+    return Promise.reject(error);
+  }
+  const userStore = useUserStore();
+  userStore.logout();
+  window.location.href = '/login';
+  ElMessage.error(error.response.data.message || '登录状态已过期，请重新登录');
+} else {
+  ElMessage.error(error.message || '网络异常，请稍后重试');
+}
     return Promise.reject(error);
   }
 );

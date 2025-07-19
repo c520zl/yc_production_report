@@ -179,7 +179,7 @@
               <el-pagination
                 :current-page="currentPage"
                 :page-size="pageSize"
-                :total="filteredBagTypeData.length"
+                :total="totalCount"
                 layout="total, sizes, prev, pager, next, jumper"
                 prev-text="上一页"
                 next-text="下一页"
@@ -375,7 +375,7 @@ const fetchSummaryData = async () => {
       avgEfficiency: Number(avgEfficiency),
       qualifiedRate: Number(qualifiedRate),
       bagTypeRatio: Number(bagTypeRatio),
-      totalProduction: totalProduction,
+
     };
 
     // 从records中提取并聚合袋型数据

@@ -21,6 +21,7 @@ const privateRoutes = [
     children: [
       {
         path: 'dashboard',
+        name: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
         meta: { title: '数据看板' }
       },
@@ -28,6 +29,11 @@ const privateRoutes = [
         path: 'reports/production',
         component: () => import('@/views/reports/production.vue'),
         meta: { title: '生产报表' }
+      },
+      {
+        path: 'profile',
+        component: () => import('@/views/profile/index.vue'),
+        meta: { title: '个人中心' }
       }
     ]
   }
