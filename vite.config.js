@@ -29,7 +29,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8080', // 后端API地址
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: path => path.startsWith('/api/captcha') ? path : path.replace(/^\/api/, '')
       }
     }
   }

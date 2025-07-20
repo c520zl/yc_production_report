@@ -146,21 +146,21 @@
                   <div class="empty-text">未找到生产数据，请检查日期范围或联系管理员</div>
                 </div>
               </template>
-              <el-table-column prop="id" label="ID" width="60"></el-table-column>
-              <el-table-column prop="bagType" label="袋型名称"></el-table-column>
-              <el-table-column prop="report_date" label="生产日期"></el-table-column>
+              <el-table-column prop="id" label="ID" width="60" align="center"></el-table-column>
+              <el-table-column prop="bagType" label="袋型名称" align="center"></el-table-column>
+              <el-table-column prop="report_date" label="生产日期" align="center"></el-table-column>
               <el-table-column
                 prop="productionQuantity"
                 label="生产量"
-                align="right"
+                align="center"
                 :formatter="formatNumber"
               ></el-table-column>
-              <el-table-column prop="productionEfficiency" label="生产效率(%)">
+              <el-table-column prop="productionEfficiency" label="生产效率(%)" align="center">
                 <template #default="scope"
                   >{{ scope.row.productionEfficiency }}%</template
                 >
               </el-table-column>
-              <el-table-column prop="passRate" label="合格率(%)">
+              <el-table-column prop="passRate" label="合格率(%)" align="center">
                 <template #default="scope">
                   <span
                     :class="
@@ -773,10 +773,10 @@ const handleCurrentChange = (val) => {
 
 // 页面加载时初始化
 onMounted(() => {
-  // 设置默认日期范围为最近30天
+  // 设置默认日期范围为最近7天
   const endDate = new Date();
   const startDate = new Date();
-  startDate.setDate(endDate.getDate() - 30);
+  startDate.setDate(endDate.getDate() - 7);
   dateRange.value = [startDate, endDate];
   fetchData();
 });
@@ -807,9 +807,13 @@ onMounted(() => {
 }
 
 .dashboard-title {
-  font-size: 18px;
+  text-align: center;
+  font-size: 26px;
   font-weight: 600;
-  margin: 0;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #409EFF;
 }
 
 .header-actions {
@@ -916,15 +920,21 @@ onMounted(() => {
 .chart-header {
   padding: 16px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+  gap: 12px;
 }
 
 .chart-title {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #409EFF;
 }
 
 .chart-container {
@@ -946,15 +956,21 @@ onMounted(() => {
 .table-header {
   padding: 16px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+  gap: 12px;
 }
 
 .table-title {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #409EFF;
 }
 
 .table-search {
