@@ -31,31 +31,9 @@ export const exportJsonToExcel = ({ header, data, filename = 'export', sheetName
 
     // 导出文件
     XLSX.writeFile(wb, `${filename}.xlsx`);
-    ElMessage.success('导出成功');
+    // ElMessage.success('导出成功');
   } catch (error) {
     console.error('Excel导出失败:', error);
-    ElMessage.error('导出失败，请重试');
-  }
-};
-
-/**
- * 导出表格数据为Excel
- * @param {string} id - 表格DOM元素ID
- * @param {string} filename - 文件名
- */
-export const exportTableToExcel = (id, filename = 'export') => {
-  try {
-    const table = document.getElementById(id);
-    if (!table) {
-      ElMessage.warning('未找到表格元素');
-      return;
-    }
-
-    const wb = XLSX.utils.table_to_book(table);
-    XLSX.writeFile(wb, `${filename}.xlsx`);
-    ElMessage.success('导出成功');
-  } catch (error) {
-    console.error('表格导出失败:', error);
     ElMessage.error('导出失败，请重试');
   }
 };
